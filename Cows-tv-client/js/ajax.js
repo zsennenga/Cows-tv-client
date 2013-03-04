@@ -5,7 +5,7 @@ function doAjax() {
 	$.ajaxSetup({
 		async: false
 		});
-	$.getJSON('http://169.237.123.4/cows/includes/ajax.php', function(data) {
+	$.getJSON('http://169.237.123.4/cows/includes/ajax.php?callback=?', function(data) {
 			feedData = data;
 		});
 }
