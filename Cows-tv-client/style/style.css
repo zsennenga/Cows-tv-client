@@ -1,0 +1,51 @@
+body	{
+	font-family: Georgia, serif;
+	overflow: none;
+	margin: 5px auto;
+	width:1920px;
+	overflow:hidden;
+}
+#content	{
+	height: 865px;
+	max-height:1080px;
+	overflow:hidden;
+}
+#events	{
+	color:white;
+	background-color:#002855;
+	height: 50px;
+}
+#logo	{
+	width: inherit;
+	max-width: 1920px;
+	position: relative;
+	left: 700px;
+}
+#eventHeaderText	{
+	width: inherit;
+	max-width: 1920px;
+	position: relative;
+	top: 9px;
+	left: 850px;
+}
+#title	{
+	font-size:275%;
+	text-align: center;
+	font-weight:bold;
+}
+#other	{
+	font-size:200%;
+	text-align: center;
+}
+#footer	{
+	background-color:#002855;
+	height: 50px;
+}
+#event1	{
+	text-align: center;
+	height: 50%;
+}
+#event2 {
+	height: 50%;
+	text-align: center;
+}
