@@ -4,9 +4,10 @@ body	{
 	margin: 5px auto;
 	width:1920px;
 	overflow:hidden;
+	background-color:white;
 }
 #content	{
-	height: 865px;
+	height: 850px;
 	max-height:1080px;
 	overflow:hidden;
 }
@@ -26,7 +27,8 @@ body	{
 	max-width: 1920px;
 	position: relative;
 	top: 9px;
-	left: 850px;
+	align: center;
+	font-size: 300%
 }
 #title	{
 	font-size:275%;

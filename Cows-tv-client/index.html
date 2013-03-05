@@ -2,21 +2,27 @@
 <html>
 <head>
 	<title>ITS Cows Calendar</title>
-	<link rel="stylesheet" href="style/style.css" type="text/css">
-	<script src="./js/jquery.js"></script>
-	<script src="./js/ajax.js"></script>
+	<link rel="stylesheet" type="text/css" href="style/style.css" ></link>
+	<script language="javascript" type='text/javascript' src="js/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/API/Widget.js"></script>
+    <script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/API/Plugin.js"></script>
+    <script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/API/TVKeyValue.js"></script>
+    <script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/Util/Include.js"></script>
+    <script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/Util/Language.js"></script>
+    <script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/Plugin/Define.js"></script>
+    <script language="javascript" type="text/javascript" src="Javascript/Main.js"></script>
 </head>
-<body>
+<body onload="Main.onLoad();" onunload="Main.onUnload();">
+<script language="javascript" type="text/javascript" src="$MANAGER_WIDGET/Common/IME/ime2.js"></script>
 <div id='header'>
-	<div id='logo'><img src="images/ucdavis-its-logo.png"></div>
+	<div id='logo'></div>
 	<div id='events'>
-		<div id='eventHeaderText'><h2>Upcoming Events</h2></div>
+		<div id='eventHeaderText'><h1>Today at West Village</h1></div>
 	</div>
 </div>
 <br/>
 <div id='content'>
-	<div id='event1'>No event available to display.</div>
-	<div id='event2'>No event available to display.</div>
+	
 </div>
 <br/>
 <div id='footer'></div>
