@@ -1,24 +1,29 @@
 var widgetAPI = new Common.API.Widget();
 var tvKey = new Common.API.TVKeyValue();
 var feedData;
-var index1 = 0;
-var index2 = 1;
+var index;
 function doAjax() {
 	$.ajaxSetup({
 		async: false
 		});
 	$.getJSON('http://169.237.123.4/cows/includes/ajax.php?callback=?', function(data) {
 			feedData = data;
+			eventUpdate();
+			index = 0;
 		});
 }
 function eventUpdate(){
-	  $('#event1').fadeOut(500);
-	  $('#event2').fadeOut(500, function(){
-		  $('#event1').delay(1000).html(feedData[index1]).fadeIn('fast');
-		  $('#event2').delay(1000).html(feedData[index2]).fadeIn('fast');
-	  });
-	  index1 = (index1 + 2) % 6;
-	  index2 = (index2 + 2) % 6;
+	  if (feedData[0] == "noEvent")	{
+		 $('#content').html(feedData[1]); 
+	  }
+	  else if (feedData.length > 1)	{
+		  $('#content').html(feedData[index]);
+		  index = (index + 1) % feedData.length;
+	  }
+	  else	{
+		  $('#content').html(feedData[0]);
+		  index = 0;
+	  }
 }
 var Main = function()
 {
@@ -31,8 +36,8 @@ Main.onLoad = function()
 	this.enableKeys();
 	widgetAPI.sendReadyEvent();
 	doAjax();
-	setInterval(eventUpdate, 1000*15);
-	setInterval(doAjax, 1000*15*60);
+	setInterval(eventUpdate, 1000*20);
+	setInterval(doAjax, 1000*120*60);
 };
 
 Main.onUnload = function()
