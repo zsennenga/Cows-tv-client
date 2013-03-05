@@ -26,13 +26,11 @@ body	{
 	text-align: center;
 	font-size: 150%;
 }
-#title	{
-	font-size:300%;
+.title	{
 	text-align: center;
 	font-weight:bold;
 }
-#other	{
-	font-size:250%;
+.other	{
 	text-align: center;
 }
 #footer	{
@@ -41,14 +39,16 @@ body	{
 }
 .event	{
 	text-align: center;
-    font-size: 300%;
+	vertical-align: middle;
     display: table-cell;
-    vertical-align: middle;
 }
-
 .noevent	{
 	text-align: center;
     font-size: 300%;
     display: table-cell;
     vertical-align: middle;
+}
+.row	{
+	display: table-row;
+	text-align: center;
 }

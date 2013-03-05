@@ -17,12 +17,19 @@ function eventUpdate(){
 		 $('#content').html(feedData[1]); 
 	  }
 	  else if (feedData.length > 1)	{
-		  $('#content').html(feedData[index]);
-		  index = (index + 1) % feedData.length;
+		  /*$('#content').html(feedData[index]);
+		  index = (index + 1) % feedData.length;*/
+		  $('#content').html(feedData[0]);
+		  for (var i = 1; i <feedData.length;i++){
+			  $('#content').append(feedData[i]);
+		  }
+		  $('.title').css("font-size",850/feedData.length + "%");
+		  $('.other').css("font-size",700/feedData.length + "%");
+		  $('.event').css("height",100/feedData.length + "%");
 	  }
 	  else	{
 		  $('#content').html(feedData[0]);
-		  index = 0;
+		  //index = 0;
 	  }
 }
 var Main = function()
@@ -36,8 +43,8 @@ Main.onLoad = function()
 	this.enableKeys();
 	widgetAPI.sendReadyEvent();
 	doAjax();
-	setInterval(eventUpdate, 1000*20);
-	setInterval(doAjax, 1000*120*60);
+	setInterval(eventUpdate, 1000*10);
+	setInterval(doAjax, 1000*60*60);
 };
 
 Main.onUnload = function()
