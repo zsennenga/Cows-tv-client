@@ -72,6 +72,7 @@ function doBurn()	{
 function clearBurn()	{
 	clearInterval(burnInterval);
 	$('body').css('background-color','white');
+	$('body').css("background-image","");
 	$('body').html(tempHtml);
 	eventUpdate();
 	updateInterval = setInterval(eventUpdate,1000*5*60);
