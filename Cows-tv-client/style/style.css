@@ -1,3 +1,6 @@
+html { 
+	height: 100%;
+}
 body	{
 	font-family: Georgia, serif;
 	overflow: none;
@@ -5,6 +8,9 @@ body	{
 	width:1920px;
 	overflow:hidden;
 	background-color:white;
+	background-repeat:no-repeat;
+	background-position:center!important; 
+	height: 100%;
 }
 #content	{
 	height: 850px;
