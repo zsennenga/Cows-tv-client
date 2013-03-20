@@ -77,7 +77,7 @@ function clearBurn()	{
 	$('body').css("background-image","");
 	$('body').html(tempHtml);
 	eventUpdate();
-	updateInterval = setInterval(eventUpdate,1000*5*60);
+	updateInterval = setInterval(eventUpdate,1000*20);
 }
 var Main = function()
 {
