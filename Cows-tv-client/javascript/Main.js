@@ -9,6 +9,9 @@ var updateTimeInterval;
 var tempHtml;
 var eventIndex = new Array();
 
+/**
+ * Executes all necessary ajax to update the data arrays for events and background images
+ */
 function doAjax() {
 	$.ajaxSetup({
 		async: false
@@ -21,7 +24,9 @@ function doAjax() {
 		bgData = data;
 	});
 }
-
+/**
+ * Updates the content html object with 3 events. Cycles through all available events in groups of 3
+ */
 function eventUpdate() {
 		if (feedData != null)	{
 		  if (feedData[0] == "noEvent")	{
@@ -57,25 +62,31 @@ function eventUpdate() {
 		  }
 		}
 }
-
+/**
+ * Function to handle regular screen clearing to avoid any possible burn-in on the screen. Every 30 minutes, displays 12 images for 15 seconds each
+ */
 function burnProtect()	{
 	clearInterval(updateInterval);
 	clearInterval(updateTimeInterval);
 	tempHtml = $('body').html();
 	$('body').html('');
 	$('body').css('background-color','black');
-	burnInterval = setInterval(doBurn,1000*60);
+	burnInterval = setInterval(doBurn,1000*15);
 	doBurn();
 	setTimeout(clearBurn,1000*3*60);
 }
-
+/**
+ * Function to actually change the background image.
+ */
 function doBurn()	{
 	$('body').html("");
 	$('body').css("background-color","black");
 	$('body').css("background-image","url(http://169.237.123.4/cows/images/"+bgData[burnIndex] + ")");
 	burnIndex = (burnIndex + 1) % bgData.length;
 }
-
+/**
+ * Returns the program to the normal event-displaying state
+ */
 function clearBurn()	{
 	clearInterval(burnInterval);
 	$('body').css('background-color','white');
@@ -86,7 +97,17 @@ function clearBurn()	{
 	updateInterval = setInterval(eventUpdate,1000*20);
 	updateTimeInterval = setInterval(updateTime,500);
 }
-function pad(n) { return ("0" + n).slice(-2); }
+/**
+ * Helper function for the time display. Forces HH:MM with 0 padding if necessary
+ * @param n int
+ * @returns padded string
+ */
+function pad(n) { 
+	return ("0" + n).slice(-2); 
+}
+/**
+ * Updates the time display in the footer
+ */
 function updateTime()	{
 	var date = new Date();
 	var half = "AM";
@@ -105,7 +126,9 @@ var Main = function()
 {
 		
 };
-
+/**
+ * Handles variable initialization, first runs of doAjax() and updateTime, and sets all initial intervals
+ */
 Main.onLoad = function()
 {
 	widgetAPI.sendReadyEvent();
