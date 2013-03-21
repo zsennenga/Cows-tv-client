@@ -13,7 +13,7 @@ body	{
 	height: 100%;
 }
 #content	{
-	height: 850px;
+	height: 810px;
 	max-height:1080px;
 	overflow:hidden;
 	width: 1920px;
@@ -57,4 +57,13 @@ body	{
 .row	{
 	display: table-row;
 	text-align: center;
+}
+#time	{
+	width: inherit;
+	max-width: 1920px;
+	position: relative;
+	top: 14px;
+	text-align: center;
+	font-size: 150%;
+	color: white;
 }
