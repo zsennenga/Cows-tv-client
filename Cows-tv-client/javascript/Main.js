@@ -5,6 +5,7 @@ var bgData;
 var updateInterval;
 var burnInterval;
 var burnIndex = 0;
+var updateTimeInterval;
 var tempHtml;
 var eventIndex = new Array();
 
@@ -59,6 +60,7 @@ function eventUpdate() {
 
 function burnProtect()	{
 	clearInterval(updateInterval);
+	clearInterval(updateTimeInterval);
 	tempHtml = $('body').html();
 	$('body').html('');
 	$('body').css('background-color','black');
@@ -80,7 +82,9 @@ function clearBurn()	{
 	$('body').css("background-image","");
 	$('body').html(tempHtml);
 	eventUpdate();
+	updateTime();
 	updateInterval = setInterval(eventUpdate,1000*20);
+	updateTimeInterval = setInterval(updateTime,500);
 }
 function pad(n) { return ("0" + n).slice(-2); }
 function updateTime()	{
@@ -114,7 +118,7 @@ Main.onLoad = function()
 	updateTime();
 	
 	updateInterval = setInterval(eventUpdate, 1000*20);
+	updateTimeInterval = setInterval(updateTime,500);
 	setInterval(burnProtect, 1000*30*60);
 	setInterval(doAjax, 1000*60*60);
-	setInterval(updateTime,500);
 };
