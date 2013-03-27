@@ -9,6 +9,28 @@ var updateTimeInterval;
 var tempHtml;
 var eventIndex = new Array();
 
+var weekday=new Array(7);
+weekday[0]="Sunday";
+weekday[1]="Monday";
+weekday[2]="Tuesday";
+weekday[3]="Wednesday";
+weekday[4]="Thursday";
+weekday[5]="Friday";
+weekday[6]="Saturday";
+var month=new Array();
+month[0]="January";
+month[1]="February";
+month[2]="March";
+month[3]="April";
+month[4]="May";
+month[5]="June";
+month[6]="July";
+month[7]="August";
+month[8]="September";
+month[9]="October";
+month[10]="November";
+month[11]="December";
+
 /**
  * Executes all necessary ajax to update the data arrays for events and background images
  */
@@ -16,11 +38,11 @@ function doAjax() {
 	$.ajaxSetup({
 		async: false
 		});
-	$.getJSON('http://169.237.123.4/cows/includes/ajaxEvents.php?callback=?', function(data) {
+	$.getJSON('http://169.237.123.4/cows/ajaxEvents.php?callback=?', function(data) {
 			feedData = data;
 			eventUpdate();
 		});
-	$.getJSON('http://169.237.123.4/cows/includes/ajaxImages.php?callback=?', function(data) {
+	$.getJSON('http://169.237.123.4/cows/ajaxImages.php?callback=?', function(data) {
 		bgData = data;
 	});
 }
@@ -118,8 +140,12 @@ function updateTime()	{
 		half = "PM";
 	}
 	var minutes = date.getMinutes();
-	var seconds = date.getSeconds();
+	var dayNum = pad(date.getDate());
+	var monthText = month[date.getMonth()];
+	var year = date.getFullYear();
+	var day = weekday[date.getDay()];
 	$('#footer').html("<div id='time'><h2>" + pad(hours) + ":" + pad(minutes) + " " + half +"</h2></div>");
+	$('#eventHeaderText').html("<h1>" + day + " " + monthText + " " + dayNum + " at UC Davis West Village</h1>");
 }
 
 var Main = function()
