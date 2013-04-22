@@ -142,7 +142,6 @@ function updateTime()	{
 	var minutes = date.getMinutes();
 	var dayNum = pad(date.getDate());
 	var monthText = month[date.getMonth()];
-	var year = date.getFullYear();
 	var day = weekday[date.getDay()];
 	$('#footer').html("<div id='time'><h2>" + pad(hours) + ":" + pad(minutes) + " " + half +"</h2></div>");
 	$('#eventHeaderText').html("<h1>" + day + " " + monthText + " " + dayNum + " at UC Davis West Village</h1>");
