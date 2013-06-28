@@ -30,6 +30,7 @@ month[8]="September";
 month[9]="October";
 month[10]="November";
 month[11]="December";
+baseURL= "http://dev.ucdavis.edu/v1/TVDisplay/";
 
 /**
  * Executes all necessary ajax to update the data arrays for events and background images
@@ -38,11 +39,11 @@ function doAjax() {
 	$.ajaxSetup({
 		async: false
 		});
-	$.getJSON('http://169.237.123.4/cows/ajaxEvents.php?callback=?', function(data) {
+	$.getJSON(baseURL + 'ajaxEvents.php?callback=?', function(data) {
 			feedData = data;
 			eventUpdate();
 		});
-	$.getJSON('http://169.237.123.4/cows/ajaxImages.php?callback=?', function(data) {
+	$.getJSON(baseURL + 'ajaxImages.php?callback=?', function(data) {
 		bgData = data;
 	});
 }
@@ -103,7 +104,7 @@ function burnProtect()	{
 function doBurn()	{
 	$('body').html("");
 	$('body').css("background-color","black");
-	$('body').css("background-image","url(http://169.237.123.4/cows/images/"+bgData[burnIndex] + ")");
+	$('body').css("background-image","url("+baseURL+"images/"+bgData[burnIndex] + ")");
 	burnIndex = (burnIndex + 1) % bgData.length;
 }
 /**
@@ -168,5 +169,5 @@ Main.onLoad = function()
 	updateInterval = setInterval(eventUpdate, 1000*20);
 	updateTimeInterval = setInterval(updateTime,500);
 	setInterval(burnProtect, 1000*30*60);
-	setInterval(doAjax, 1000*60*60);
+	setInterval(doAjax, 1000*60*5);
 };
