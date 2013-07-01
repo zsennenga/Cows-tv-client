@@ -30,7 +30,7 @@ month[8]="September";
 month[9]="October";
 month[10]="November";
 month[11]="December";
-baseURL= "http://dev.ucdavis.edu/v1/TVDisplay/";
+baseURL= "http://dev.its.ucdavis.edu/v1/TVDisplay/";
 
 /**
  * Executes all necessary ajax to update the data arrays for events and background images
