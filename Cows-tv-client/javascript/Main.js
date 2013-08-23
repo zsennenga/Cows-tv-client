@@ -172,7 +172,7 @@ Main.onLoad = function()
 	
 	updateInterval = setInterval(eventUpdate, 1000*20);
 	updateTimeInterval = setInterval(updateTime,1000);
-	//setInterval(burnProtect, 1000*10);
-	setInterval(burnProtect,1000*60*30);
+	setInterval(burnProtect, 1000*5*60);
+	//setInterval(burnProtect,1000*60*30);
 	setInterval(doAjax, 1000*60*5);
 };
