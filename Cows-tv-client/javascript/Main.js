@@ -8,6 +8,7 @@ var burnIndex = 0;
 var updateTimeInterval;
 var tempHtml;
 var eventIndex = new Array();
+var slideshow;
 
 var weekday=new Array(7);
 weekday[0]="Sunday";
@@ -31,6 +32,7 @@ month[9]="October";
 month[10]="November";
 month[11]="December";
 baseURL= "http://dev.its.ucdavis.edu/v1/TVDisplay/";
+apiURL = "http://dev.its.ucdavis.edu/scripts/CowsTvServer.php?siteId=its&callback=?";
 
 /**
  * Executes all necessary ajax to update the data arrays for events and background images
@@ -39,7 +41,7 @@ function doAjax() {
 	$.ajaxSetup({
 		async: false
 		});
-	$.getJSON(baseURL + 'ajaxEvents.php?callback=?', function(data) {
+	$.getJSON(apiURL, function(data) {
 			feedData = data;
 			eventUpdate();
 		});
@@ -86,39 +88,41 @@ function eventUpdate() {
 		}
 }
 /**
- * Function to handle regular screen clearing to avoid any possible burn-in on the screen. Every 30 minutes, displays 12 images for 15 seconds each
+ * Function to handle regular screen clear	ing to avoid any possible burn-in on the screen. Every 30 minutes, displays 12 images for 15 seconds each
  */
 function burnProtect()	{
 	clearInterval(updateInterval);
 	clearInterval(updateTimeInterval);
 	tempHtml = $('body').html();
-	$('body').html('');
-	$('body').css('background-color','black');
-	burnInterval = setInterval(doBurn,1000*15);
-	doBurn();
+	newHtml = "<div class=\"pics\">"; 
+    for (var x = 0; x < bgData.length; x++)	{
+    	newHtml = newHtml.concat("<img src=\"http://dev.its.ucdavis.edu/images/" + encodeURIComponent(bgData[x]) + "\" width=\"100%\" height=\"100%\" /> ");
+    }
+    newHtml = newHtml.concat("</div>");
+    $('body').html(newHtml);
+    $('body').css("background-color", "black");
+    $(document).ready(function() { 
+    	$('.pics').cycle({
+    	aspect: 1,
+    	fx: 'fade',
+        fit: 1,
+        random:  1
+    	});
+    });
+	//setTimeout(clearBurn,1000*20);
 	setTimeout(clearBurn,1000*3*60);
-}
-/**
- * Function to actually change the background image.
- */
-function doBurn()	{
-	$('body').html("");
-	$('body').css("background-color","black");
-	$('body').css("background-image","url("+baseURL+"images/"+bgData[burnIndex] + ")");
-	burnIndex = (burnIndex + 1) % bgData.length;
 }
 /**
  * Returns the program to the normal event-displaying state
  */
 function clearBurn()	{
-	clearInterval(burnInterval);
-	$('body').css('background-color','white');
-	$('body').css("background-image","");
+	$('.pics').cycle('destroy');
 	$('body').html(tempHtml);
+	$('body').css("background-color", "white");
 	eventUpdate();
 	updateTime();
 	updateInterval = setInterval(eventUpdate,1000*20);
-	updateTimeInterval = setInterval(updateTime,500);
+	updateTimeInterval = setInterval(updateTime,1000);
 }
 /**
  * Helper function for the time display. Forces HH:MM with 0 padding if necessary
@@ -167,7 +171,8 @@ Main.onLoad = function()
 	updateTime();
 	
 	updateInterval = setInterval(eventUpdate, 1000*20);
-	updateTimeInterval = setInterval(updateTime,500);
-	setInterval(burnProtect, 1000*30*60);
+	updateTimeInterval = setInterval(updateTime,1000);
+	//setInterval(burnProtect, 1000*10);
+	setInterval(burnProtect,1000*60*30);
 	setInterval(doAjax, 1000*60*5);
 };

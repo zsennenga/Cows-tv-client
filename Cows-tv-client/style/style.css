@@ -67,3 +67,20 @@ body	{
 	font-size: 150%;
 	color: white;
 }
+.wraptocenter {
+	    display: table-cell;
+	    text-align: center;
+	    vertical-align: middle;
+	    height: 100%;
+	    width: 100%;
+}
+.wraptocenter * {
+	    vertical-align: middle;
+}
+.pics	{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+	height: 80%;
+	width: 80%;
+};
